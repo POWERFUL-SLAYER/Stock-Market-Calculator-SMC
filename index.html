@@ -1,153 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SMC | Live Risk Terminal</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@300;500;800&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --brand-cyan: #00f2ff; --brand-red: #ff0055; --brand-orange: #ffa200; --brand-green: #00ff88;
-            --bg-deep: #050508; --panel-bg: #0a0b12; --input-bg: rgba(255, 255, 255, 0.03);
-            --border-subtle: rgba(255, 255, 255, 0.05); --font-main: 'Space Grotesk', sans-serif; --font-mono: 'JetBrains Mono', monospace;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { background: var(--bg-deep); color: #fff; font-family: var(--font-main); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 15px; }
-
-        .dashboard { width: 100%; max-width: 450px; background: var(--panel-bg); border: 1px solid var(--border-subtle); border-radius: 25px; padding: 30px; display: flex; flex-direction: column; gap: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
-        header h1 { font-size: 1.6rem; font-weight: 900; text-transform: uppercase; letter-spacing: -1px; text-align: center; }
-        header span { color: var(--brand-cyan); }
-
-        .input-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-        .field { display: flex; flex-direction: column; gap: 6px; }
-        .field label { font-family: var(--font-mono); font-size: 0.6rem; color: rgba(255,255,255,0.3); text-transform: uppercase; }
-        .field input, .field select { 
-            background: var(--input-bg); border: 1px solid var(--border-subtle); 
-            padding: 12px; border-radius: 12px; color: #fff; font-family: var(--font-mono); outline: none; font-size: 0.9rem; transition: border 0.3s;
-        }
-        .field input:focus { border-color: var(--brand-cyan); }
-        
-        .main-result { background: var(--input-bg); border: 1px solid var(--border-subtle); border-radius: 20px; padding: 25px; text-align: center; cursor: pointer; position: relative; }
-        .val { font-family: var(--font-mono); font-size: 2.6rem; font-weight: 800; display: block; }
-        .lbl { font-size: 0.6rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; }
-
-        .secondary-results { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-        .card { background: var(--input-bg); border: 1px solid var(--border-subtle); border-radius: 15px; padding: 15px; text-align: center; }
-        .card .val { font-size: 1.1rem; }
-
-        .support-card {
-            margin-top: 10px;
-            background: rgba(0, 242, 255, 0.03);
-            border: 1px solid rgba(0, 242, 255, 0.2);
-            border-radius: 22px;
-            padding: 25px;
-            text-align: center;
-        }
-
-        .support-card h3 { font-size: 0.9rem; color: var(--brand-cyan); margin-bottom: 5px; text-transform: uppercase; }
-        .support-card p { font-size: 0.7rem; opacity: 0.5; margin-bottom: 15px; }
-        
-        .upi-pill {
-            display: inline-flex;
-            align-items: center;
-            background: #ffffff;
-            color: #000;
-            border: none;
-            padding: 12px 28px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.8rem;
-            cursor: pointer;
-        }
-
-        #copy-toast {
-            position: absolute; top: 10px; right: 15px; font-size: 0.5rem; 
-            background: var(--brand-green); color: #000; padding: 3px 7px; 
-            border-radius: 4px; display: none; font-weight: 900;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>SMC | Live Risk Terminal</title>
+<link href="[https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@300;500;800&display=swap](https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@300;500;800&display=swap)" rel="stylesheet">
+<style>
+:root {
+--brand-cyan: #00f2ff; --brand-red: #ff0055; --brand-orange: #ffa200; --brand-green: #00ff88;
+--bg-deep: #050508; --panel-bg: #0a0b12; --input-bg: rgba(255, 255, 255, 0.03);
+--border-subtle: rgba(255, 255, 255, 0.05); --font-main: 'Space Grotesk', sans-serif; --font-mono: 'JetBrains Mono', monospace;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+body { background: var(--bg-deep); color: #fff; font-family: var(--font-main); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 15px; }
+.dashboard { width: 100%; max-width: 450px; background: var(--panel-bg); border: 1px solid var(--border-subtle); border-radius: 25px; padding: 30px; display: flex; flex-direction: column; gap: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+header h1 { font-size: 1.6rem; font-weight: 900; text-transform: uppercase; letter-spacing: -1px; text-align: center; }
+.input-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label { font-family: var(--font-mono); font-size: 0.6rem; color: rgba(255,255,255,0.3); text-transform: uppercase; }
+.field input, .field select {
+background: var(--input-bg); border: 1px solid var(--border-subtle);
+padding: 12px; border-radius: 12px; color: #fff; font-family: var(--font-mono); outline: none; font-size: 0.9rem; transition: border 0.3s;
+}
+.field input:focus { border-color: var(--brand-cyan); }
+.main-result { background: var(--input-bg); border: 1px solid var(--border-subtle); border-radius: 20px; padding: 25px; text-align: center; cursor: pointer; position: relative; }
+.val { font-family: var(--font-mono); font-size: 2.6rem; font-weight: 800; display: block; }
+.lbl { font-size: 0.6rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; }
+.secondary-results { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.card { background: var(--input-bg); border: 1px solid var(--border-subtle); border-radius: 15px; padding: 15px; text-align: center; }
+.card .val { font-size: 1.1rem; }
+.support-card {
+margin-top: 10px;
+background: rgba(0, 242, 255, 0.03);
+border: 1px solid rgba(0, 242, 255, 0.2);
+border-radius: 22px;
+padding: 25px;
+text-align: center;
+}
+.support-card h3 { font-size: 0.9rem; color: var(--brand-cyan); margin-bottom: 5px; text-transform: uppercase; }
+.alert-text { font-size: 0.65rem; color: var(--brand-red); font-weight: 700; margin-bottom: 10px; display: block; text-transform: uppercase; }
+.upi-pill {
+display: inline-flex;
+align-items: center;
+background: #ffffff;
+color: #000;
+border: none;
+padding: 12px 28px;
+border-radius: 50px;
+font-weight: 700;
+font-size: 0.8rem;
+cursor: pointer;
+opacity: 0.8;
+}
+#copy-toast {
+position: absolute; top: 10px; right: 15px; font-size: 0.5rem;
+background: var(--brand-green); color: #000; padding: 3px 7px;
+border-radius: 4px; display: none; font-weight: 900;
+}
+</style>
 </head>
 <body>
-
-    <main class="dashboard">
-        <header><h1>SMC <span>Terminal</span></h1></header>
-
-        <section class="input-grid">
-            <div class="field"><label>Equity ($)</label><input type="number" id="equity" placeholder="0" oninput="Terminal.calculate()"></div>
-            <div class="field"><label>Risk %</label><input type="number" id="risk" placeholder="0" step="0.1" oninput="Terminal.calculate()"></div>
-            <div class="field">
-                <label>Asset</label>
-                <select id="asset" onchange="Terminal.calculate()">
-                    <option value="0" selected>None</option>
-                    <option value="10">Forex</option>
-                    <option value="100">Gold</option>
-                    <option value="1000">Indices</option>
-                </select>
-            </div>
-            <div class="field"><label>SL (Pips)</label><input type="number" id="sl" placeholder="0" oninput="Terminal.calculate()"></div>
-            <div class="field"><label>RR Ratio</label><input type="number" id="rr" value="1" step="0.5" oninput="Terminal.calculate()"></div>
-            <div class="field"><label>Leverage</label><input type="number" id="lev" value="500" oninput="Terminal.calculate()"></div>
-        </section>
-
-        <section class="main-result" onclick="Terminal.copyLots()">
-            <div id="copy-toast">COPIED</div>
-            <span class="val" id="out-lots" style="color: var(--brand-cyan);">0.00</span>
-            <span class="lbl">Target Lots (Tap to Copy)</span>
-        </section>
-
-        <section class="secondary-results">
-            <div class="card"><span class="val" id="out-risk" style="color: var(--brand-red);">$0</span><span class="lbl">Risk</span></div>
-            <div class="card"><span class="val" id="out-reward" style="color: var(--brand-green);">$0</span><span class="lbl">Profit</span></div>
-            <div class="card"><span class="val" id="out-margin" style="color: var(--brand-orange);">$0</span><span class="lbl">Margin</span></div>
-        </section>
-
-        <div class="support-card">
-            <h3>Support the Creator</h3>
-            <p>Help keep this terminal ad-free and evolving.</p>
-            <button class="upi-pill" onclick="Terminal.pay()">
-                Buy the developer a coffee ☕✨
-            </button>
-        </div>
-    </main>
-
-    <script>
-        const Terminal = {
-            calculate() {
-                const e = parseFloat(document.getElementById('equity').value) || 0;
-                const r = parseFloat(document.getElementById('risk').value) || 0;
-                const s = parseFloat(document.getElementById('sl').value) || 0;
-                const a = parseFloat(document.getElementById('asset').value) || 0;
-                const rr = parseFloat(document.getElementById('rr').value) || 0;
-                const l = parseFloat(document.getElementById('lev').value) || 1;
-
-                const riskCash = e * (r / 100);
-                
-                // Prevent division by zero if asset or SL is 0
-                const lots = (s > 0 && a > 0) ? (riskCash / (s * a)) : 0;
-                
-                const rewardCash = riskCash * rr;
-                const margin = (lots * 100000) / l;
-
-                document.getElementById('out-lots').innerText = lots === 0 ? "0.00" : (lots < 0.1 ? lots.toFixed(3) : lots.toFixed(2));
-                document.getElementById('out-risk').innerText = `$${Math.round(riskCash).toLocaleString()}`;
-                document.getElementById('out-reward').innerText = `$${Math.round(rewardCash).toLocaleString()}`;
-                document.getElementById('out-margin').innerText = margin < 1 && margin > 0 ? `$${margin.toFixed(2)}` : `$${Math.round(margin).toLocaleString()}`;
-            },
-            copyLots() {
-                const val = document.getElementById('out-lots').innerText;
-                if(val === "0.00") return;
-                navigator.clipboard.writeText(val);
-                const toast = document.getElementById('copy-toast');
-                toast.style.display = 'block';
-                setTimeout(() => toast.style.display = 'none', 1200);
-            },
-            pay() {
-                window.location.href = "upi://pay?pa=9633969815@ybl&pn=Jayasree%20Anoop&cu=INR";
-            }
-        };
-    </script>
+<main class="dashboard">
+<header><h1>SMC <span>Terminal</span></h1></header>
+<section class="input-grid">
+<div class="field"><label>Equity ($)</label><input type="number" id="equity" placeholder="0" oninput="Terminal.calculate()"></div>
+<div class="field"><label>Risk %</label><input type="number" id="risk" placeholder="0" step="0.1" oninput="Terminal.calculate()"></div>
+<div class="field">
+<label>Asset</label>
+<select id="asset" onchange="Terminal.calculate()">
+<option value="0" selected>None</option>
+<option value="10">Forex</option>
+<option value="100">Gold</option>
+<option value="1000">Indices</option>
+</select>
+</div>
+<div class="field"><label>SL (Pips)</label><input type="number" id="sl" placeholder="0" oninput="Terminal.calculate()"></div>
+<div class="field"><label>RR Ratio</label><input type="number" id="rr" value="1" step="0.5" oninput="Terminal.calculate()"></div>
+<div class="field"><label>Leverage</label><input type="number" id="lev" value="500" oninput="Terminal.calculate()"></div>
+</section>
+<section class="main-result" onclick="Terminal.copyLots()">
+<div id="copy-toast">COPIED</div>
+<span class="val" id="out-lots" style="color: var(--brand-cyan);">0.00</span>
+<span class="lbl">Target Lots (Tap to Copy)</span>
+</section>
+<section class="secondary-results">
+<div class="card"><span class="val" id="out-risk" style="color: var(--brand-red);">$0</span><span class="lbl">Risk</span></div>
+<div class="card"><span class="val" id="out-reward" style="color: var(--brand-green);">$0</span><span class="lbl">Profit</span></div>
+<div class="card"><span class="val" id="out-margin" style="color: var(--brand-orange);">$0</span><span class="lbl">Margin</span></div>
+</section>
+<div class="support-card">
+<h3>Support the Creator</h3>
+<span class="alert-text">Donations aren't working at the time</span>
+<button class="upi-pill" onclick="Terminal.pay()">
+Buy the developer a coffee ☕✨
+</button>
+</div>
+</main>
+<script>
+const Terminal = {
+calculate() {
+const e = parseFloat(document.getElementById('equity').value) || 0;
+const r = parseFloat(document.getElementById('risk').value) || 0;
+const s = parseFloat(document.getElementById('sl').value) || 0;
+const a = parseFloat(document.getElementById('asset').value) || 0;
+const rr = parseFloat(document.getElementById('rr').value) || 0;
+const l = parseFloat(document.getElementById('lev').value) || 1;
+const riskCash = e * (r / 100);
+const lots = (s > 0 && a > 0) ? (riskCash / (s * a)) : 0;
+const rewardCash = riskCash * rr;
+const margin = (lots * 100000) / l;
+document.getElementById('out-lots').innerText = lots === 0 ? "0.00" : (lots < 0.1 ? lots.toFixed(3) : lots.toFixed(2));
+document.getElementById('out-risk').innerText = $${Math.round(riskCash).toLocaleString()};
+document.getElementById('out-reward').innerText = $${Math.round(rewardCash).toLocaleString()};
+document.getElementById('out-margin').innerText = margin < 1 && margin > 0 ? $${margin.toFixed(2)} : $${Math.round(margin).toLocaleString()};
+},
+copyLots() {
+const val = document.getElementById('out-lots').innerText;
+if(val === "0.00") return;
+navigator.clipboard.writeText(val);
+const toast = document.getElementById('copy-toast');
+toast.style.display = 'block';
+setTimeout(() => toast.style.display = 'none', 1200);
+},
+pay() {
+window.location.href = "upi://pay?pa=xxxxxxxxxxxxxxxxx&pn=xxxxxxxx&cu=INR";
+}
+};
+</script>
 </body>
 </html>
